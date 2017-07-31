@@ -1,4 +1,4 @@
-/* 
+/*
 
 	Copyright 2017 Danny Kunz
 
@@ -13,33 +13,33 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
-	
+
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.protein;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "hmdb")
 @XmlAccessorType(XmlAccessType.NONE)
-public class TissueLocations
+public class HMDBProteinModel
 {
-	@XmlElement(name = "tissue")
-	private List<String> locations = new ArrayList<>();
+	@XmlElement(name = "protein", namespace = "http://www.hmdb.ca")
+	private List<Protein> proteins;
 
-	public List<String> getLocations()
+	public List<Protein> getProteins()
 	{
-		return this.locations;
+		return this.proteins;
 	}
 
-	public TissueLocations setLocations(List<String> locations)
+	public void setProteins(List<Protein> proteins)
 	{
-		this.locations = locations;
-		return this;
+		this.proteins = proteins;
 	}
 
 }

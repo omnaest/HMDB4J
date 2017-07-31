@@ -99,6 +99,7 @@ public class XMLHelper
 			JAXBContext jaxbContext = JAXBContext.newInstance(model.getClass());
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 			jaxbMarshaller.marshal(model, writer);
 			writer.close();
 			retval = writer.toString();

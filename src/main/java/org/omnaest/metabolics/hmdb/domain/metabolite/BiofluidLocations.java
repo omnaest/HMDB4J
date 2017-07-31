@@ -16,8 +16,9 @@
 	
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.metabolite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,19 +26,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.NONE)
-public class Concentrations
+public class BiofluidLocations
 {
-	@XmlElement(name = "concentration")
-	private List<Concentration> concentrations;
+	@XmlElement(name = "biofluid")
+	private List<String> locations = new ArrayList<>();
 
-	public List<Concentration> getConcentrations()
+	public List<String> getLocations()
 	{
-		return this.concentrations;
+		return this.locations;
 	}
 
-	public Concentrations setConcentrations(List<Concentration> concentrations)
+	public BiofluidLocations setLocations(List<String> locations)
 	{
-		this.concentrations = concentrations;
+		this.locations = locations;
 		return this;
 	}
 

@@ -1,4 +1,4 @@
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.base;
 
 import java.util.ArrayList;
 import java.util.List;

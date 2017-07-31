@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.metabolite;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +26,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.omnaest.metabolics.hmdb.domain.base.Pathways;
+import org.omnaest.metabolics.hmdb.domain.base.Reference;
+import org.omnaest.metabolics.hmdb.domain.base.References;
+import org.omnaest.metabolics.hmdb.domain.base.Synonyms;
+
 @XmlType
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Metabolite
 {
 	@XmlElement

@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +26,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.NONE)
-public class References
+public class Pathways
 {
-	@XmlElement(name = "reference")
-	private List<Reference> references = new ArrayList<>();
+	@XmlElement(name = "pathway")
+	private List<Pathway> pathways = new ArrayList<>();
 
-	public List<Reference> getReferences()
+	public List<Pathway> getPathways()
 	{
-		return this.references;
+		return this.pathways;
 	}
 
-	public References setReferences(List<Reference> references)
+	public void setPathways(List<Pathway> pathways)
 	{
-		this.references = references;
-		return this;
+		this.pathways = pathways;
 	}
 
 }

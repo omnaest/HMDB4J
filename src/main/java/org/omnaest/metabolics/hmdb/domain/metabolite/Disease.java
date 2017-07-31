@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.metabolite;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +24,9 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+
+import org.omnaest.metabolics.hmdb.domain.base.Reference;
+import org.omnaest.metabolics.hmdb.domain.base.References;
 
 @XmlAccessorType(XmlAccessType.NONE)
 public class Disease

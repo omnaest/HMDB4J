@@ -16,7 +16,7 @@
 	
 
 */
-package org.omnaest.metabolics.hmdb.domain;
+package org.omnaest.metabolics.hmdb.domain.metabolite;
 
 import java.util.ArrayList;
 import java.util.List;

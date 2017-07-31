@@ -22,18 +22,29 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.omnaest.metabolics.hmdb.domain.HMDBModel;
+import org.omnaest.metabolics.hmdb.domain.metabolite.HMDBMetaboliteModel;
+import org.omnaest.metabolics.hmdb.domain.protein.HMDBProteinModel;
 import org.omnaest.metabolics.hmdb.utils.XMLHelper;
 
 public class HMDBUtils
 {
-	public static HMDBModel parse(File file) throws IOException
+	public static HMDBMetaboliteModel parseMetaboliteXML(File file) throws IOException
 	{
-		return parse(FileUtils.readFileToString(file, "utf-8"));
+		return parseMetaboliteXML(FileUtils.readFileToString(file, "utf-8"));
 	}
 
-	public static HMDBModel parse(String xml)
+	public static HMDBMetaboliteModel parseMetaboliteXML(String xml)
 	{
-		return XMLHelper.parse(xml, HMDBModel.class);
+		return XMLHelper.parse(xml, HMDBMetaboliteModel.class);
+	}
+
+	public static HMDBProteinModel parseProteinXML(File file) throws IOException
+	{
+		return parseProteinXML(FileUtils.readFileToString(file, "utf-8"));
+	}
+
+	public static HMDBProteinModel parseProteinXML(String xml)
+	{
+		return XMLHelper.parse(xml, HMDBProteinModel.class);
 	}
 }
