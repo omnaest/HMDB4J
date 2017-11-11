@@ -20,31 +20,59 @@ package org.omnaest.metabolics.hmdb;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Stream;
 
-import org.apache.commons.io.FileUtils;
-import org.omnaest.metabolics.hmdb.domain.metabolite.HMDBMetaboliteModel;
-import org.omnaest.metabolics.hmdb.domain.protein.HMDBProteinModel;
-import org.omnaest.metabolics.hmdb.utils.XMLHelper;
+import org.omnaest.metabolics.hmdb.components.MetaboliteAnalysis;
+import org.omnaest.metabolics.hmdb.domain.HMDBMetaboliteDataSet;
+import org.omnaest.metabolics.hmdb.domain.raw.metabolite.HMDBRawMetaboliteDataSet;
+import org.omnaest.metabolics.hmdb.domain.raw.metabolite.Metabolite;
 
 public class HMDBUtils
 {
-	public static HMDBMetaboliteModel parseMetaboliteXML(File file) throws IOException
+	public static interface HMDBDataSetLoader
 	{
-		return parseMetaboliteXML(FileUtils.readFileToString(file, "utf-8"));
+		public HMDBMetaboliteDataSet loadMetabolitesFrom(File file) throws IOException;
 	}
 
-	public static HMDBMetaboliteModel parseMetaboliteXML(String xml)
+	public static HMDBDataSetLoader getInstance()
 	{
-		return XMLHelper.parse(xml, HMDBMetaboliteModel.class);
-	}
+		return new HMDBDataSetLoader()
+		{
+			@Override
+			public HMDBMetaboliteDataSet loadMetabolitesFrom(File file) throws IOException
+			{
+				HMDBRawMetaboliteDataSet rawDataSet = RawHMDBUtils.parseMetaboliteXML(file);
+				return new HMDBMetaboliteDataSet()
+				{
 
-	public static HMDBProteinModel parseProteinXML(File file) throws IOException
-	{
-		return parseProteinXML(FileUtils.readFileToString(file, "utf-8"));
-	}
+					@Override
+					public Stream<MetaboliteAnalyzer> getAnalyzableMetabolites()
+					{
+						return rawDataSet	.getMetabolites()
+											.stream()
+											.map(metabolite -> this.createMetaboliteAnalyzer(metabolite));
+					}
 
-	public static HMDBProteinModel parseProteinXML(String xml)
-	{
-		return XMLHelper.parse(xml, HMDBProteinModel.class);
+					private MetaboliteAnalyzer createMetaboliteAnalyzer(Metabolite metabolite)
+					{
+						return new MetaboliteAnalyzer()
+						{
+							@Override
+							public MetaboliteAnalysis analyze()
+							{
+								return new MetaboliteAnalysis(metabolite);
+							}
+
+							@Override
+							public String getKeggId()
+							{
+								return metabolite.getKeggId();
+							}
+						};
+					}
+
+				};
+			}
+		};
 	}
 }
