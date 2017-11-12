@@ -141,6 +141,15 @@ public class MetaboliteAnalysis
 								return Other;
 							});
 		}
+
+		public static MetaboliteAnalysis.FluidType matchByName(String name)
+		{
+			return Arrays	.asList(values())
+							.stream()
+							.filter(type -> StringUtils.equalsIgnoreCase(name, type.name()))
+							.findFirst()
+							.orElseThrow(() -> new IllegalArgumentException("Unknown body fluid type: " + name));
+		}
 	}
 
 	protected static class MeasureSpot
