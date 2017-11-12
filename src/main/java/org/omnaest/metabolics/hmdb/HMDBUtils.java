@@ -20,6 +20,7 @@ package org.omnaest.metabolics.hmdb;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import org.omnaest.metabolics.hmdb.components.MetaboliteAnalysis;
@@ -64,9 +65,26 @@ public class HMDBUtils
 							}
 
 							@Override
+							public String getName()
+							{
+								return metabolite.getName();
+							}
+
+							@Override
 							public String getKeggId()
 							{
 								return metabolite.getKeggId();
+							}
+
+							@Override
+							public boolean matches(String regex)
+							{
+								Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+								return Stream	.concat(Stream.of(metabolite.getName()), metabolite	.getSynonyms()
+																									.stream())
+												.anyMatch(name -> pattern	.matcher(name)
+																			.matches());
 							}
 						};
 					}

@@ -29,6 +29,10 @@ public interface HMDBMetaboliteDataSet
 		public String getKeggId();
 
 		public MetaboliteAnalysis analyze();
+
+		public boolean matches(String regex);
+
+		public String getName();
 	}
 
 	public Stream<MetaboliteAnalyzer> getAnalyzableMetabolites();

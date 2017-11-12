@@ -54,14 +54,21 @@ public class MetaboliteAnalysis
 		private double	min;
 		private double	max;
 		private int		count;
+		private double	deviation;
 
-		public MeasurementRange(double average, double min, double max, int count)
+		public MeasurementRange(double average, double min, double max, int count, double deviation)
 		{
 			super();
 			this.average = average;
 			this.min = min;
 			this.max = max;
 			this.count = count;
+			this.deviation = deviation;
+		}
+
+		public double getDeviation()
+		{
+			return this.deviation;
 		}
 
 		public double getAverage()
@@ -192,7 +199,14 @@ public class MetaboliteAnalysis
 							.max()
 							.orElse(Double.NaN);
 		int count = values.size();
-		return new MeasurementRange(average, min, max, count);
+
+		double variance = values.stream()
+								.mapToDouble(value -> Math.pow(value.getValue() - average, 2))
+								.sum()
+				/ (count - 1);
+		double deviation = Math.sqrt(variance);
+
+		return new MeasurementRange(average, min, max, count, deviation);
 	}
 
 	public Map<FluidType, MeasurementRange> getNormalValueRange()

@@ -35,6 +35,7 @@ public class HMDBUtilsTest
 															.loadMetabolitesFrom(file);
 
 		metaboliteDataSet	.getAnalyzableMetabolites()
+							.filter(metabolite -> metabolite.matches("homovanillate"))
 							.limit(10)
 							.forEach(analyzer ->
 							{
