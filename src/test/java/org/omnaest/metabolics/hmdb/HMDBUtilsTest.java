@@ -20,6 +20,7 @@ package org.omnaest.metabolics.hmdb;
 
 import java.io.File;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.omnaest.metabolics.hmdb.domain.HMDBMetaboliteDataSet;
 import org.omnaest.metabolics.hmdb.utils.JSONHelper;
@@ -28,6 +29,7 @@ public class HMDBUtilsTest
 {
 
 	@Test
+	@Ignore
 	public void testGetInstance() throws Exception
 	{
 		File file = new File("C:\\Z\\databases\\hmdb\\urine_metabolites.xml");

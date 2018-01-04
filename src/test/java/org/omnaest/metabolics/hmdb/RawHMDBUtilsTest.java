@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.omnaest.metabolics.hmdb.components.MetaboliteAnalysis;
@@ -38,7 +39,7 @@ public class RawHMDBUtilsTest
 {
 
 	@Test
-	//@Ignore
+	@Ignore
 	public void testParseMetaboliteXMLAndMore() throws Exception
 	{
 		File file = new File("C:\\Z\\databases\\hmdb\\urine_metabolites.xml");
@@ -87,6 +88,24 @@ public class RawHMDBUtilsTest
 															.stream()
 															.limit(10)
 															.collect(Collectors.toList())));
+	}
+
+	@Test
+	public void testParseProteinXML2() throws Exception
+	{
+		File file = new File("C:\\Z\\databases\\hmdb\\hmdb_proteins.xml");
+		//		File file = new File("C:\\Z\\databases\\hmdb\\sample\\protein_sample.xml");
+
+		HMDBProteinModel hmdbModel = RawHMDBUtils.parseProteinXML(file);
+
+		hmdbModel	.getProteins()
+					.stream()
+					.filter(protein -> StringUtils.equalsIgnoreCase("Enzyme", protein.getProteinType()))
+					.forEach(protein ->
+					{
+						System.out.println(protein.getGeneName() + " (" + protein.getGeneralFunction() + ")");
+						//System.out.println(JSONHelper.prettyPrint(protein));
+					});
 	}
 
 	@Test
