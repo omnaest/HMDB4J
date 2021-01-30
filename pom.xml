@@ -5,7 +5,7 @@
 	<groupId>org.omnaest.metabolics</groupId>
 	<artifactId>HMDB4J</artifactId>
 	<parent>
-		<groupId>org.omnaest.commons</groupId>
+		<groupId>org.omnaest.utils</groupId>
 		<artifactId>CommonsParent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
